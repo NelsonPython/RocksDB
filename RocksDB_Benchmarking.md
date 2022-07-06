@@ -64,9 +64,9 @@ We also recommend setting the read_ahead_kb kernel parameter to 8 kilobytes. Thi
 ``` 
 #!/bin/bashi in {0..3}; do
 
-echo deadline &gt; /sys/block/nvme${i}n1/queue/scheduler
+echo deadline > /sys/block/nvme${i}n1/queue/scheduler
 
-echo 8 &gt; /sys/block/nvme${i}n1/queue/read_ahead_kb
+echo 8 > /sys/block/nvme${i}n1/queue/read_ahead_kb
 
 done
 ```
@@ -87,7 +87,7 @@ To increase db_bench performance, we recommend that users disable swap entirely.
 ``` 
 $ swapoff --all
 
-$ echo 0 &gt; /proc/sys/vm/zone_reclaim_moderecommend running the below script that sets CPU frequency scaling to the performance governor.
+$ echo 0 > /proc/sys/vm/zone_reclaim_moderecommend running the below script that sets CPU frequency scaling to the performance governor.
 
 We also recommend setting the CPU frequency scaling governor to performance.
 

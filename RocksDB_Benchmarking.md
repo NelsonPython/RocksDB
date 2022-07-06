@@ -132,13 +132,13 @@ $ make -j32 release
 
 For all the db_bench workloads, we recommend four separate db_bench processes with two processes per socket and each process using its own NVMe drive.
 
-![]("https://www.intel.com/content/dam/develop/external/us/en/images/rocks-db-configuration.jpg")
+![](https://www.intel.com/content/dam/develop/external/us/en/images/rocks-db-configuration.jpg)
 
 ### db_bench Tuning
 
 Sections 3.3.1 to 3.3.6 provide scripts for running the six selected db_bench workloads:  fillseq, readrandom, overwrite, seekrandom, readrandomwriterandom, and readwhilewriting. To launch four database instances, a script must be executed four times, each using a different value for NUMA node binding, database directory, and WAL directory. The following table may be used as a guide.
 
-![]("https://www.intel.com/content/dam/develop/external/us/en/images/rocks-db-database-and-WAL-table.jpg")
+![](https://www.intel.com/content/dam/develop/external/us/en/images/rocks-db-database-and-WAL-table.jpg)
 
 <em>Table 1. Recommended NUMA node binding and database and WAL directory for the four database instances.</em>
 
@@ -571,7 +571,7 @@ numactl -m $NUMA_NODE -N $NUMA_NODE $ROCKSDB_HOME/db_bench \
 
 ## Encryption in RocksDB
 
-RocksDB currently offers no support for AES-based encryption, but we expect that to change as soon as our [PR for AES encryption]("https://github.com/facebook/rocksdb/pull/7240") is merged. The implementation is based on Intel [IPP-Crypto library]("https://github.com/intel/ipp-crypto") and supports AES-CTR encryption with key sizes of 92, 128, and 256 bits [4].
+RocksDB currently offers no support for AES-based encryption, but we expect that to change as soon as our [PR for AES encryption](https://github.com/facebook/rocksdb/pull/7240) is merged. The implementation is based on Intel [IPP-Crypto library](https://github.com/intel/ipp-crypto) and supports AES-CTR encryption with key sizes of 92, 128, and 256 bits [4].
 
 ### Building Intel IPP-Crypto Library
 
@@ -593,7 +593,7 @@ $ make all -j32
 $ make install
 ```
 
-Detailed build instructions are available on [Github]("https://github.com/intel/ipp-crypto/blob/develop/BUILD.md").
+Detailed build instructions are available on [Github](https://github.com/intel/ipp-crypto/blob/develop/BUILD.md).
 
 ### Building RocksDB with AES Support
 
@@ -640,30 +640,18 @@ options.create_if_missing = true;
 
 // create an IPP_AES encryption provider
 
-std::shared_ptr&lt;EncryptionProvider&gt; provider;
+std::shared_ptr<EncryptionProvider> provider;
 
-Status status = EncryptionProvider::CreateFromString(ConfigOptions(), "IPP_AES", &amp;provider);
+Status status = EncryptionProvider::CreateFromString(ConfigOptions(), "IPP_AES", &provider);
 
 assert(status.ok());
 
 // set the key and its size
 
-status = provider-&gt;AddCipher("", "a6d2ae2816157e2b3c4fcf098815f7xb", 32, false);
-
-assert(status.ok());
-
-// set new encrypted environment
-
-options.env = NewEncryptedEnv(Env::Default(), provider);
-
-// open database
-
-status = DB::Open(options, kDBPath, &amp;db);
-
-assert(status.ok());
+status = provider->AddCipher("", "a6d2ae2816157e2b3c4fcf098815f7xb", 32, false);
 ```
 
-Source: ["https://github.com/mulugetam/rocksdb/blob/aes-encryption/examples/ippcp_encryption_example.cc"](https://github.com/mulugetam/rocksdb/blob/aes-encryption/examples/ippcp_encryption_example.cc)
+Source: [https://github.com/mulugetam/rocksdb/blob/aes-encryption/examples/ippcp_encryption_example.cc](https://github.com/mulugetam/rocksdb/blob/aes-encryption/examples/ippcp_encryption_example.cc)
 
 ## Conclusion
 

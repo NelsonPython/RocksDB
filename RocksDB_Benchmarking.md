@@ -667,7 +667,7 @@ Source: ["https://github.com/mulugetam/rocksdb/blob/aes-encryption/examples/ippc
 
 ## Conclusion
 
-Due to the large number of configuration parameters available in db_bench, the parameter values for the workloads described in sections 3.1.1 to 3.1.6 should be considered as suggestions. Users are highly recommended to run the standard tuning [Advisor]("https://rocksdb.org/blog/2018/08/01/rocksdb-tuning-advisor.html") that is distributed with RocksDB.
+Due to the large number of configuration parameters available in db_bench, the parameter values for the workloads described in sections 3.1.1 to 3.1.6 should be considered as suggestions. Users are highly recommended to run the standard tuning [Advisor](https://rocksdb.org/blog/2018/08/01/rocksdb-tuning-advisor.html) that is distributed with RocksDB.
 
 The performance measurements done with RocksDB demonstrated a significant improvement in throughput and latency when compared to the prior Xeon® generations and other competitive platforms. With 3rd Generation Intel® Xeon® Scalable processor, overall performance further improves as various components, like CPU, memory, and storage work together efficiently for the best user experience.
 
